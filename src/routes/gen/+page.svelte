@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import Replicate from 'replicate';
   
-	let userPrompt = 'a 19th century portrait of a raccoon gentleman wearing a suit';
+	let userPrompt = '';
 	let generatedImage = '';
   
 	async function generateImage() {
