@@ -8,7 +8,7 @@
   
 	async function generateImage() {
 	  const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
-	  const model = 'stability-ai/stable-diffusion:27b93a2413e7f36cd83da926f3656280b2931564ff050bf9575f1fdf9bcd7478';
+	  const model = 'stability-ai/stable-diffusion:2a865c9a94c9992b6689365b75db2d678d5022505ed3f63a5f53929a31a46947';
 	  const input = { prompt: userPrompt };
   
 	  try {
