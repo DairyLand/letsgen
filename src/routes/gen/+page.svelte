@@ -1,55 +1,37 @@
+<!-- src/routes/generate-image.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import { reactive, set } from 'svelte/store';
-	import fetch from 'node-fetch';
+	import Replicate from 'replicate';
   
-	const imageGenerated = '';
+	let userPrompt = 'a 19th century portrait of a raccoon gentleman wearing a suit';
+	let generatedImage = '';
   
-	// Your Replicate API token
-	const YOUR_API_TOKEN = 'your-actual-api-token-here';
-  
-	// Store to manage the prompt input
-	const promptInput = reactive({ prompt: '' });
-  
-	// Function to fetch the image
 	async function generateImage() {
-	  const model = "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf";
-	  const input = { prompt: promptInput.prompt };
+	  const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
+	  const model = 'stability-ai/stable-diffusion:27b93a2413e7f36cd83da926f3656280b2931564ff050bf9575f1fdf9bcd7478';
+	  const input = { prompt: userPrompt };
   
 	  try {
-		const response = await fetch('https://replicate.com/api/models/stability-ai/stable-diffusion/run', {
-		  method: 'POST',
-		  headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${YOUR_API_TOKEN}` // Use your actual API token
-		  },
-		  body: JSON.stringify({ model, input })
-		});
-  
-		if (response.ok) {
-		  const data = await response.json();
-		imageGenerated = data[0];
-		} else {
-		  console.error('Failed to generate image.');
-		}
+		const output = await replicate.run(model, { input });
+		generatedImage = output.image_url;
 	  } catch (error) {
-		console.error('Error:', error);
+		console.error('Image generation failed:', error);
+		// Handle errors here
 	  }
 	}
   
-	onMount(() => {
-	  generateImage();
-	});
+	onMount(generateImage); // Automatically generate an image when the component loads
   </script>
   
-  <div>
-	<h1>Generate Image</h1>
-	<label for="promptInput">Enter Prompt:</label>
-	<input type="text" id="promptInput" bind:value={promptInput.prompt} />
+  <h1>AI Image Generation</h1>
+  <form on:submit|preventDefault={generateImage}>
+	<label for="userPrompt">Enter a prompt:</label>
+	<input type="text" id="userPrompt" bind:value={userPrompt} />
+	<button type="submit">Generate Image</button>
+  </form>
   
-	<button on:click={generateImage}>Generate Image</button>
-  
-	<h1>Generated Image</h1>
-	<img {src=imageGenerated} alt="Generated Image" />
-  </div>
+  {#if generatedImage}
+	<h2>Generated Image</h2>
+	<img src={generatedImage} alt="Generated Image" />
+  {/if}
   
