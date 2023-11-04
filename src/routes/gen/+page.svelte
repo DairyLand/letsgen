@@ -5,6 +5,8 @@
 		<input class="input" type="text" placeholder="Your Prompt here" />
 	</label>
 
+</div>
+  <div>
 	<label class="label">
 		<span>Models</span>
 		<select class="select">
@@ -13,6 +15,4 @@
 			<option value="3">GTA</option>
 		</select>
 	</label>
-
-</div>
-  
+  </div>
