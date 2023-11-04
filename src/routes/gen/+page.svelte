@@ -5,8 +5,9 @@
 		<input class="input" type="text" placeholder="Your Prompt here" />
 	</label>
 
-</div>
-  <div>
+</div >
+
+  <div class="whitespace-normal">
 	<label class="label">
 		<span>Models</span>
 		<select class="select">
