@@ -12,7 +12,10 @@
 				<strong class="text-xl uppercase">Skeleton</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<a href= "/gen">gen</a>
+				<a class="btn btn-sm variant-ghost-surface"
+				 href= "/gen">gen</a>
+				<a class="btn btn-sm variant-ghost-surface" 
+				href= "/meme">meme</a>
 				<a
 					class="btn btn-sm variant-ghost-surface"
 					href="https://discord.gg/EXqV7W8MtY"
