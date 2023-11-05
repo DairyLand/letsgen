@@ -1,13 +1,13 @@
 <!-- this file will contain the ui for the image gen the js for the replicate should go in the server js-->
-<div>
+<div class="h3 container ">
 	<label class="label">
 		<span>Input</span>
 		<input class="input" type="text" placeholder="Your Prompt here" />
 	</label>
 
-</div >
+</div>
 
-  <div class="whitespace-normal">
+  <div class="h4 container">
 	<label class="label">
 		<span>Models</span>
 		<select class="select">
@@ -17,3 +17,4 @@
 		</select>
 	</label>
   </div>
+
